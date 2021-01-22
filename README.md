@@ -7,6 +7,7 @@ In the meanwhile take a look at my fork of [VGA_T4 library](https://github.com/D
 [VGA_T4 library by Jean-MarcHarvengt](https://github.com/Jean-MarcHarvengt/VGA_t4) wich has progressed way more.
 
 <br>
+
 ### Future plans for functionalities:
 There are a few things i could come up with wich i think would be very nice additons in the future
 - pass lambdas or callbacks to objects to execute when a certain condition is met (activated in .update()) (very usefull for game dev)
