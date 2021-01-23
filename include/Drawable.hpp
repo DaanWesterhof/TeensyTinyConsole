@@ -9,20 +9,28 @@
 #include "Locational.hpp"
 
 
-class Drawable {
-public:
-    Point point;
+namespace TTC {
+
+    class Drawable {
+    public:
+        Point point;
 
 
-protected:
-    template<int width, int height>
-    virtual int draw(Canvas<width, height> & canvas) = 0;
+    protected:
+        virtual void draw(Canvas &canvas) = 0;
 
-    virtual Rect getRect() = 0;
-public:
-    Drawable(Point point) : point(point) {}
+        virtual Rect getRect() = 0;
 
-};
+    public:
+        Drawable(Point point) : point(point) {}
+
+        friend class Canvas;
+
+    };
+
+
+
+}
 
 
 #endif //TEENSYTINYCONSOLE_DRAWABLE_HPP

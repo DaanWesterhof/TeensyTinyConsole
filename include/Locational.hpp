@@ -14,8 +14,8 @@ struct Point {
 
 struct Rect {
     Point location;
-    int width;
-    int height;
+    unsigned int width;
+    unsigned int height;
 
     Rect(Point point, int w, int h) : location(point), width(w), height(h) {}
 

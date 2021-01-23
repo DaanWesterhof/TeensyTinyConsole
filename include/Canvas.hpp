@@ -5,29 +5,56 @@
 #ifndef TEENSYTINYCONSOLE_CANVAS_HPP
 #define TEENSYTINYCONSOLE_CANVAS_HPP
 
-#include <cstdint>
-#include "Drawable.hpp"
-#include "../../VGA_t4/header/VGA_t4.h"
 
-template<int width, int height>
-class Canvas {
-    VGA_T4 &vga_output;
+#include "Window.hpp"
+#include "Arduino.h"
+#include "Locational.hpp"
 
 
-public:
-    void draw(Drawable & drawable){
-        drawable.draw<width, height>(canvas);
-    }
+namespace TTC {
+
+    class Drawable;
+
+    class Canvas {
+
+    public:
+        Window &window;
+        int width;
+        int height;
+
+    private:
+        bool hasArray = false;
+        Colors *canvas_array{};
 
 
-    setPixel(int x, int y, Colors color){
-        vga_output.drawPixel(x, y, color);
+    public:
 
-    }
+        //when window can store data;
+        Canvas(Window &window);
+
+        //when window cant store data
+        Canvas(Window &window, int width, int height, bool makeArray = false);
 
 
+        void draw(Drawable &drawable);
 
-};
+        void setPixel(const Point& point, Colors color);
 
+        void setPixel(int x, int y, Colors color);
+
+        void clear();
+
+        void clear(Colors color);
+
+        void flush() {
+            window.flush();
+        }
+
+    private:
+
+
+    };
+
+}
 
 #endif //TEENSYTINYCONSOLE_CANVAS_HPP
