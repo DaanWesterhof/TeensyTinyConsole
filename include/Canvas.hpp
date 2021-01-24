@@ -24,7 +24,7 @@ namespace TTC {
 
     private:
         bool hasArray = false;
-        Colors *canvas_array{};
+        uint8_t *canvas_array;
 
 
     public:
@@ -38,13 +38,13 @@ namespace TTC {
 
         void draw(Drawable &drawable);
 
-        void setPixel(const Point& point, Colors color);
+        void setPixel(const Point& point, uint8_t color);
 
-        void setPixel(int x, int y, Colors color);
+        void setPixel(int x, int y, uint8_t color);
 
         void clear();
 
-        void clear(Colors color);
+        void clear(uint8_t color);
 
         void flush() {
             window.flush();

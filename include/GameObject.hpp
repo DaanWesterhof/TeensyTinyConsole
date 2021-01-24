@@ -23,7 +23,9 @@ namespace TTC {
     template<typename... FuncArgTypes>
     class GameObject {
 
+
     public:
+        bool destroy = false;
         std::function<void(GameObject<FuncArgTypes...>&, FuncArgTypes...)> extraFunctions[10];
         int function_count = 0;
 

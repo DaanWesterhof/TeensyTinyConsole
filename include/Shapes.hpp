@@ -13,7 +13,7 @@ namespace TTC {
     class Rectangle : public Drawable {
         int width;
         int height;
-        Colors color = Colors::BLACK;
+        uint8_t color = 0;
 
     protected:
 
@@ -35,36 +35,32 @@ namespace TTC {
 
 
     class Circle : public Drawable {
+    public:
         unsigned int radius;
         bool filled = true;
-        Colors color = Colors::BLACK;
+        uint8_t color = 178;
 
 
-    protected:
 
 
         void draw(Canvas &canvas) override {
-            if (filled) {
-                for (int i = 0; i < radius * 2; i++) {
-                    for (int j = 0; j < radius * 2; j++) {
-                        if (((i - radius) ^ 2 + (j - radius) ^ 2) <= (radius ^ 2)) {
-                            canvas.setPixel(i + point.x, j + point.y, color);
-                        }
-                    }
-                }
-            } else {
-                for (int i = 0; i < radius * 2; i++) {
-                    for (int j = 0; j < radius * 2; j++) {
-                        if (((i - radius) ^ 2 + (j - radius) ^ 2) == (radius ^ 2)) {
-                            canvas.setPixel(i + point.x, j + point.y, color);
-                        }
+            Point middle(point.x + radius, point.y + radius);
+            int max_radius = radius * radius;
+
+            for (int i = 0; i < radius * 2; i++) {
+                for (int j = 0; j < radius * 2; j++) {
+
+                    if ((((i - radius) * (i - radius)) + ((j - radius) * (j - radius) )) <= (max_radius)) {
+                        canvas.setPixel(i + point.x, j + point.y, color);
                     }
                 }
             }
         }
 
-    public:
+
         Circle(const Point& point, int radius) : Drawable(point), radius(radius) {}
+
+        Circle(const Point& point, int radius, uint8_t color) : Drawable(point), radius(radius), color(color) {}
 
         Rect getRect() override {
             return {point, radius*2, radius*2};

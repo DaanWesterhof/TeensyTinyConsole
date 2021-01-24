@@ -9,7 +9,7 @@ TTC::Canvas::Canvas(TTC::Window &window) : window(window), width(window.getWidth
 
 TTC::Canvas::Canvas(TTC::Window &window, int width, int height, bool makeArray) : window(window), width(width), height(height) {
     if(makeArray) {
-        canvas_array = (Colors *) calloc(width * height, 0);
+        canvas_array = (uint8_t *) calloc(width * height, sizeof(uint8_t));
         hasArray = true;
     }
 }
@@ -19,31 +19,25 @@ void TTC::Canvas::draw(Drawable &drawable) {
 }
 
 
-void TTC::Canvas::setPixel(const Point& point, Colors color) {
+void TTC::Canvas::setPixel(const Point& point, uint8_t color) {
     setPixel(point.x, point.y, color);
 }
 
-void TTC::Canvas::setPixel(int x, int y, Colors color) {
-    if(x <= width && x >= 0 && y <= height && y >= 0) {
-        if (hasArray) {
-            canvas_array[y * width + x] = color;
-        } else {
+void TTC::Canvas::setPixel(int x, int y, uint8_t color) {
+    if(x < width && x >= 0 && y < height && y >= 0) {
             window.drawPixel(x, y, color);
-        }
     }
 }
 
 
-void TTC::Canvas::clear(Colors color) {
-    if(hasArray){
-        window.clear(color);
-    }else{
-        memset(canvas_array, int(color), (width*height));
-    }
+void TTC::Canvas::clear(uint8_t color) {
+
+    window.clear(color);
+
 }
 
 void TTC::Canvas::clear() {
-    clear(Colors::BLACK);
+    clear(0);
 }
 
 
