@@ -39,9 +39,9 @@ public://variables
     void updateAll(){
         for(int i = 0; i < object_lists.size(); i++){
             for(int j = 0; j < object_count[i].first; j++){
-                if(object_lists[i][j]->destroy){
-                    for(int k = j; k < object_count[i].first-1; k++){
-                        object_lists[i][k] =  object_lists[i][k+1];
+                while(object_lists[i][j]->destroy){
+                    if(j != object_count[i].first-1) {
+                        object_lists[i][j] = object_lists[i][object_count[i].first - 1];
                     }
                     object_count[i].first -= 1;
                 }
@@ -54,9 +54,9 @@ public://variables
         for(int i = 0; i < object_list_names.size(); i++){
             if(object_list_names[i] == list_name){
                 for(int j = 0; j < object_count[i].first; j++){
-                    if(object_lists[i][j]->destroy){
-                        for(int k = j; k < object_count[i].first-1; k++){
-                            object_lists[i][k] =  object_lists[i][k+1];
+                    while(object_lists[i][j]->destroy){
+                        if(j != object_count[i].first-1) {
+                            object_lists[i][j] = object_lists[i][object_count[i].first - 1];
                         }
                         object_count[i].first -= 1;
                     }

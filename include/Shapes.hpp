@@ -38,13 +38,14 @@ namespace TTC {
     public:
         unsigned int radius;
         bool filled = true;
-        uint8_t color = 178;
+        uint8_t color = 1;
+
+
 
 
 
 
         void draw(Canvas &canvas) override {
-            Point middle(point.x + radius, point.y + radius);
             int max_radius = radius * radius;
 
             for (int i = 0; i < radius * 2; i++) {

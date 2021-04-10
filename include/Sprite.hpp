@@ -15,30 +15,24 @@ namespace TTC {
 
         uint8_t *image;
 
-    public:
-        Sprite(Point point) : Drawable(point) {}
 
-        Sprite operator=(uint8_t * loadImage) {
-            image = loadImage;
-            return *this;
-        }
+    public:
+        int width, height;
+
+        Sprite(Point point, uint8_t * image, int width, int height) : Drawable(point), image(image), width(width), height(height) {}
+
 
         Rect getRect() override{
-            return Rect(Point(0, 0), 0, 0);
+            return Rect(point, width, height);
         }
 
-    protected:
-
-        void draw(Canvas & canvas) {
-            for(int i = 0; i < canvas.width; i++){
-                for(int j = 0; j < canvas.height; j++){
-                    if(image[i + j*canvas.width] != 255) {
-                        canvas.setPixel(i + point.x, j + point.y, image[i + j*canvas.width]);
-                    }
+        void draw(Canvas & canvas) override {
+            for(int i = 0; i < width; i++){
+                for(int j = 0; j < height; j++){
+                    canvas.setPixel(i + point.x, j + point.y, image[i +j * width]);
                 }
             }
         }
-
     };
 
 }
