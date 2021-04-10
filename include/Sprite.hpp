@@ -8,6 +8,7 @@
 #include "Drawable.hpp"
 #include "Colors.hpp"
 #include "Canvas.hpp"
+#include "Image.hpp"
 
 namespace TTC {
 
@@ -33,6 +34,20 @@ namespace TTC {
                 }
             }
         }
+    };
+
+    template<int SpriteAmount>
+    class SpriteBox {
+    public:
+        int activeSprite= 0;
+
+        Sprite sprites[SpriteAmount];
+
+
+        void LoadSpriteMap(Image * image, int amount, int width, int height){
+
+        }
+
     };
 
 }
