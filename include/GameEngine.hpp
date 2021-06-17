@@ -69,17 +69,17 @@ public://variables
 
 
     template<typename T, typename... ObjectParameters>
-    int factoryAdd(const std::string& list_name, ObjectParameters... args){
+    std::shared_ptr<T> factoryAdd(const std::string& list_name, ObjectParameters... args){
         if(std::is_base_of<TTC::GameObject<>, T>::value){
             for(int i = 0; i < object_list_names.size(); i++){
                 if(object_list_names[i] == list_name && object_count[i].first < object_count[i].second) {
                     object_lists[i][object_count[i].first] = std::make_shared<T>(args...);
                     object_count[i].first += 1;
-                    return object_count[i].first -1;
+                    return object_lists[i][object_count[i].first-1];
                 }
             }
         }
-        return -1;
+        return nullptr;
     }
 
 

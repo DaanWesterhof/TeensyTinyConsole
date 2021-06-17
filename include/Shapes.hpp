@@ -13,13 +13,13 @@ namespace TTC {
     class Rectangle : public Drawable {
         int width;
         int height;
-        uint8_t color = 0;
+        uint8_t color;
 
     protected:
 
 
 
-        void draw(Canvas &canvas) {
+        void draw(Canvas &canvas) override {
             for (int i = 0; i < canvas.width; i++) {
                 for (int j = 0; j < canvas.height; j++) {
                     canvas.setPixel(i + point.x, j + point.y, color);
@@ -28,10 +28,12 @@ namespace TTC {
         }
 
     public:
-        Rectangle(Point point, int width, int height) : Drawable(point), width(width), height(height) {}
+        Rectangle(Point point, int width, int height, uint8_t color = 0) : Drawable(point), width(width), height(height), color(color) {}
 
         Rect getRect() override;
     };
+
+
 
 
     class Circle : public Drawable {

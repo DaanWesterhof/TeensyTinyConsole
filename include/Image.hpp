@@ -2,8 +2,8 @@
 // Created by daang on 4/10/2021.
 //
 
-#ifndef STICKMAN2_IMAGE_HPP
-#define STICKMAN2_IMAGE_HPP
+#ifndef TEENSYTINYCONSOLE_IMAGE_HPP
+#define TEENSYTINYCONSOLE_IMAGE_HPP
 
 #include <Arduino.h>
 
@@ -14,4 +14,4 @@ public:
     bool mask[width][height];
 };
 
-#endif //STICKMAN2_IMAGE_HPP
+#endif //TEENSYTINYCONSOLE_IMAGE_HPP

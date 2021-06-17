@@ -24,6 +24,10 @@ namespace TTC {
     public:
         Drawable(Point point) : point(point) {}
 
+        void setPosition(Point new_point){
+            point = new_point;
+        }
+
         friend class Canvas;
 
     };
